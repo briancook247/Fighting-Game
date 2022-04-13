@@ -1,0 +1,2 @@
+#include "Ninja.h"
+
