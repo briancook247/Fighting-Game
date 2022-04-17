@@ -18,7 +18,7 @@ public:
     void setName(std::string n) { this->name = n; }
     std::string getName() const { return name; }
 
-    double id() const { return id; }
+    int id() const { return id; }
 };
 
 #endif

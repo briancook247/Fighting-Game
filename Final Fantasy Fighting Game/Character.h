@@ -14,20 +14,28 @@
 class Character {
 private:
     std::string name;
-    double maxHealth;
-    double health;
+    int maxHealth;
+    int health;
     int numAssets;
+    int damage;
+    int defense;
     //Asset* myAssets[2];
     //std::vector<Asset*> inventory;
 public:
     void setName(std::string n) { this->name = n; }
     std::string getName() const { return name; }
-    void setMaxHealth(double newMaxHealth) { this->maxHealth = newMaxHealth; }
-    double getMaxHealth() const { return maxHealth; }
-    void setHealth(double newHealth) { this->health = newHealth; }
-    double getHealth() const { return health; };
+    void setMaxHealth(int newMaxHealth) { this->maxHealth = newMaxHealth; }
+    int getMaxHealth() const { return maxHealth; }
+    void setHealth(int newHealth) { this->health = newHealth; }
+    int getHealth() const { return health; };
+    void setDamage(int newDamage) { this->damage = newDamage; }
+    int getDamage() const { return damage; };
+    void setDefense(int newDefense) { this->defense = newDefense; }
+    int getDefense() const { return defense; };
+
     virtual void getCharacterInfo() = 0;
     virtual std::string getClass() = 0;
+
     /*friend std::ostream& operator<<(std::ostream& out, const Character& c) {
         out << c.name << "\tHealth: (" << c.health << " / " << c.maxHealth << ")\n\n";
         return out;

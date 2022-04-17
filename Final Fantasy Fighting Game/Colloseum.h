@@ -17,25 +17,22 @@
 class Colloseum {
 private:
     std::vector<Character*> characterList;
-    //Character* characterList[2];
-    //int numCharacters;
+
+
 public:
     Colloseum();
     void displayAllCharacters();
     ~Colloseum();
+    void attack(Character*, Character*);
 };
 
 Colloseum::Colloseum() {
-    //numCharacters = 0;
+    
     characterList.push_back(new Ninja("Kawaki", 100));
     characterList.push_back(new Ninja("Naruto", 100));
     characterList.push_back(new Viking("Thorson", 100));
 
-    //characterList[numCharacters++] = new Ninja("Kawaki", 100);
-    //characterList[numCharacters++] = new Viking("Askelad", 100);
-   // characterList[numCharacters++] = new Ninja("Naruto", 100);
-   // characterList[numCharacters++] = new Viking("Thorson", 100);
-   // characterList[numCharacters++] = new Ninja("Sasuke", 100);
+    attack(characterList[0], characterList[1]);
 };
 
 Colloseum::~Colloseum() {
@@ -51,10 +48,15 @@ void Colloseum::displayAllCharacters() {
         characterList[i]->getCharacterInfo();
     }
 }
-//void Colloseum::displayAllCharacters() {
-//    std::cout << "The Colloseum Contains: " << std::endl;
-//    for (Character *c : characterList) {
-//        c->getCharacterInfo();
-//    }
-//}
+void Colloseum::attack(Character* attacker, Character* receiver) {
+   
+    std::cout << attacker->getName() << " attacks " << receiver->getName() <<
+        ".\n\tPrev health : " << receiver->getHealth() << "\t Damage done : " << attacker->getDamage();
+
+    receiver->setHealth(attacker->getHealth() - receiver->getDamage());
+
+     std::cout << "\t New Health : " << receiver->getHealth() << std::endl;
+}
+
+
 #endif

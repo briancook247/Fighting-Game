@@ -142,6 +142,7 @@
     <ClCompile Include="Colloseum.cpp" />
     <ClCompile Include="Ninja.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Viking.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Armor.h" />

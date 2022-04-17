@@ -13,11 +13,12 @@ class Viking : public Character {
 private:
 
 public:
-    Viking() { setName(""); setMaxHealth(100); setHealth(100); };
-    Viking(std::string n, double h) { setName(n); setMaxHealth(h); setHealth(h); };
+    Viking() { setName(""); setMaxHealth(100); setHealth(100); setDamage(10); setDefense(0); };
+    Viking(std::string n, int h) { setName(n); setMaxHealth(h); setHealth(h); setDamage(10); setDefense(0); };
 
     void getCharacterInfo() { std::cout << "Name: " << getName() << "\tHealth: (" << getHealth() << " / " << getMaxHealth() << ")\n"; };
     std::string getClass() { return "Viking"; }
+
 };
 
 #endif
