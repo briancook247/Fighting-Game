@@ -4,21 +4,23 @@
 * 4/3/2022
 * My Own Work
 */
-#ifndef ARMOR_H
-#define ARMOR_H
+#ifndef SWORD_H
+#define SWORD_H
 
 #include "Asset.h"
 
-class Armor : public Asset {
+class Sword : public Asset {
 private:
     std::string name;
     int damage;
 public:
-
+    Sword();
+    Sword(std::string, int, int, int);
     void setName(std::string n) { this->name = n; }
     std::string getName() const { return name; }
     void setDamage(int damage) { this->damage = damage; }
     int getDamage() const { return damage; }
+    void getItemInfo() { std::cout << getId() << "\t" << std::setw(20) << std::left << getName() << "\t\tDamage: " << getDamage() << "\t\tPrice: " << getPrice() << "$\n"; };
 };
 
 #endif

@@ -8,17 +8,19 @@
 #define Asset_H
 
 #include <iostream>
+#include <iomanip>
 
 class Asset {
 private:
-    std::string name;
     int id;
+    int price;
 public:
+    void setId(int id) { this->id = id; }
+    int getId() const { return id; }
+    void setPrice(int price) { this->price = price; }
+    int getPrice() const { return price; }
+    virtual void getItemInfo() = 0;
 
-    void setName(std::string n) { this->name = n; }
-    std::string getName() const { return name; }
-
-    int id() const { return id; }
 };
 
 #endif

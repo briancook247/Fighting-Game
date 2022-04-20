@@ -7,8 +7,7 @@
 int main() {
 
 	Colloseum arena;
-	arena.displayAllCharacters();
-	
+	arena.start();
 
 	return 0;
 }
