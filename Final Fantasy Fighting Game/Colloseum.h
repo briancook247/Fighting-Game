@@ -13,6 +13,7 @@
 #include "Viking.h"
 #include "Ninja.h"
 #include "Shop.h"
+#include <Windows.h>
 
 
 class Colloseum {
@@ -20,6 +21,7 @@ private:
     std::vector<Character*> characterList;
     std::vector<Character*> enemyList;
     Shop shop;
+
     
 public:
     Colloseum();
@@ -32,7 +34,11 @@ public:
     void battle();
     void goToShop();
 
+    void characterSelect();
+    void loadCharacter(std::string);
     void newCharacter();
+
+    void printIntro();
 };
 
 #endif

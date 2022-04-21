@@ -16,7 +16,7 @@ public:
     Viking() { setName(""); setMaxHealth(100); setHealth(100); setDamage(10); setDefense(0); };
     Viking(std::string n, int h) { setName(n); setMaxHealth(h); setHealth(h); setDamage(10); setDefense(0); };
 
-    void getCharacterInfo() { std::cout << "\t" << getName() << "\tHealth: (" << getHealth() << " / " << getMaxHealth() << ")\n"; };
+    void getCharacterInfo() { std::cout << " " << std::setw(13) << std::left << getName() << "\t(" << getHealth() << " / " << getMaxHealth() << ") Health\n"; };
     
    // void equipWeapon();
     

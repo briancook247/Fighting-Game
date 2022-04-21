@@ -60,19 +60,24 @@ void Colloseum::goToShop()
     std::cout << "\nYour Balance: " << characterList[0]->getBalance() << "$\n";
 
     characterList[0]->addToInv(shop.buyItem());
-    
+    characterList[0]->showInv();
 }
 
 void Colloseum::start()
 {
-    newCharacter();
-    std::cout << "\nWelcome to The Colloseum\n  Your team has:\n-------------------------------\n"; displayAllCharacters();
-    std::cout << "\nYou will be fighting...\n-------------------------------\n"; displayAllEnemies();
+    
+    std::cout << "\nWelcome to The...\n"; Sleep(800);
+    printIntro(); Sleep(700);
+
+    characterSelect();
+
+    std::cout<<"\n\tYour team has... \n------------------------------- \n"; displayAllCharacters();
+    std::cout << "\n-------------------------------\n\n\tYou will be fighting...\n-------------------------------\n"; displayAllEnemies();
 
     std::string input;
     bool exit = false;
     while (exit != true) {
-        std::cout << "Before the battle begins, would you like to visit the shop? (Q to visit shop, E to begin battle)\n";
+        std::cout << "\nBefore the battle begins, would you like to visit the shop? (Q to visit shop, E to begin battle)\n";
         std::cin >> input;
         if (input == "q" || input == "Q") {
             goToShop();
@@ -92,9 +97,24 @@ void Colloseum::battle() {
     while (endBattle != true) {
          
        
-        std::cout << "\n\nThe Battle Begins...\n  Select an enemy to attack: \n\n1: "
-            << enemyList[0]->getName() << "\n2: " << enemyList[1]->getName() << "\n3: " << enemyList[2]->getName() << "\n\n";
-
+        std::cout << "\n\nThe Battle Begins...\n";
+        while (endBattle != true) {
+            std::cout << "Press [1] to attack\t [2] to check inventory\t [3] to switch characters\t [4] to leave battle\n";
+            std::cin >> input;
+            if (input == "1") {
+                std::cout << "Select an enemy to attack : \n\n1: " << enemyList[0]->getName() << "\n2 : " << enemyList[1]->getName() << "\n3 : " << enemyList[2]->getName() << "\n\n";
+            }
+            else if (input == "2") {
+                characterList[0]->showInv();
+            }
+            else if (input == "3") {
+                //switchCharacters();
+            }
+            else if (input == "4") {
+                endBattle = true;
+            }
+        }
+     
         std::cin >> input;
         // Random Number 1-5 for per move for odds of deflection
         srand(time(NULL));
@@ -135,6 +155,28 @@ void Colloseum::battle() {
     }
 }
 
+void Colloseum::characterSelect() {
+    std::string input;
+    std::cout << "\n\nWould you like to load a previous character save (press [Q]) or make a new character (press [E])?\n";
+    while (std::cin >> input) {
+        if (input == "q" || input == "Q") {
+            std::cout << "What was the name of your character?" << "\n";
+            std::cin >> input;
+            // use getline instead
+            loadCharacter(input);
+            break;
+        }
+        else if (input == "e" || input == "E") {
+            newCharacter();
+            break;
+        }
+    }
+}
+
+void Colloseum::loadCharacter(std::string charName) {
+
+}
+
 void Colloseum::newCharacter()
 {
     std::cout << "Choose a class: Ninja or Viking... \n";
@@ -155,6 +197,25 @@ void Colloseum::newCharacter()
             break;
         }
     }
+}
+
+void Colloseum::printIntro() {
+    std::string p1 = " ________  ________  ___       ___       ________  ________  _______   ___  ___  _____ ______      ";
+    std::string p2 = "|\\   ____\\|\\   __  \\|\\  \\     |\\  \\     |\\   __  \\|\\   ____\\|\\  ___ \\ |\\  \\|\\  \\|\\   _ \\  _   \\    ";
+    std::string p3 = "\\ \\  \\___|\\ \\  \\|\\  \\ \\  \\    \\ \\  \\    \\ \\  \\|\\  \\ \\  \\___|\\ \\   __/|\\ \\  \\\\\\  \\ \\  \\\\\\__\\ \\  \\   ";
+    std::string p4 = " \\ \\  \\    \\ \\  \\\\\\  \\ \\  \\    \\ \\  \\    \\ \\  \\\\\\  \\ \\_____  \\ \\  \\_|/_\\ \\  \\\\\\  \\ \\  \\|__|\\ \\  \\  ";
+    std::string p5 = "  \\ \\  \\____\\ \\  \\\\\\  \\ \\  \\____\\ \\  \\____\\ \\  \\\\\\  \\|____|\\  \\ \\  \\_|\\ \\ \\  \\\\\\  \\ \\  \\    \\ \\  \\ ";
+    std::string p6 = "   \\ \\_______\\ \\_______\\ \\_______\\ \\_______\\ \\_______\\____\\_\\  \\ \\_______\\ \\_______\\ \\__\\    \\ \\__\\";
+    std::string p7 = "    \\|_______|\\|_______|\\|_______|\\|_______|\\|_______|\\_________\\|_______|\\|_______|\\|__|     \\|__|";
+
+    std::cout << p1 << std::endl;
+    std::cout << p2 << std::endl;
+    std::cout << p3 << std::endl;
+    std::cout << p4 << std::endl;
+    std::cout << p5 << std::endl;
+    std::cout << p6 << std::endl;
+    std::cout << p7 << std::endl;
+
 }
 
 

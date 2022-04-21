@@ -40,6 +40,11 @@ public:
     void addToInv(Asset* item) {
         inventory.addItem(item);
     }
+    void showInv() {
+        std::cout << "\n\nInventory:\n";
+        inventory.showInventory();
+        std::cout << "\n\n";
+    }
 
     virtual void getCharacterInfo() = 0;
    // virtual void inventory() = 0;
