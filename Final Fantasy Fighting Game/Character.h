@@ -24,6 +24,9 @@ private:
     int defense;
     Inventory inventory;
     Asset* curWeapon;
+    Asset* curArmor;
+    Asset* curItem;
+
     int balance;
 public:
     void setName(std::string n) { this->name = n; }
@@ -41,11 +44,30 @@ public:
 
     void addToInv(Asset* item) {
         inventory.addItem(item);
-        
+    }
+
+    Asset* getInvSlot(int id) {
+        return inventory.getInvItem(id);
     }
 
     Asset* getCurrentWeapon() {
         return curWeapon;
+    }
+
+    Asset* getCurItem() {
+        return curItem;
+    }
+
+    Asset* getCurrentArmor() {
+        return curArmor;
+    }
+
+    void setCurrentItem(int id) {
+        curItem = inventory.equipItem(--id);
+    }
+
+    void setCurrentArmor(int id) {
+        curArmor = inventory.equipItem(--id);
     }
 
     void setCurrentWeapon(int id) {
@@ -59,9 +81,7 @@ public:
     }
 
     virtual void getCharacterInfo() = 0;
-   // virtual void inventory() = 0;
     virtual std::string getClass() = 0;
-   // virtual void equip(int) = 0;
 
    /* friend std::ostream& operator<<(std::ostream& out, const Character* c) {
         out << c->getName() << "\tHealth: (" << c->getHealth() << " / " << c->getMaxHealth() << ")\n\n";

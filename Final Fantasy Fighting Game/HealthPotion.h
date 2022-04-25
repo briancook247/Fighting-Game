@@ -11,7 +11,7 @@
 
 class HealthPotion : public Asset {
 private:
-    int health;
+    int health = 20;
     std::string name;
 public:
     HealthPotion() {

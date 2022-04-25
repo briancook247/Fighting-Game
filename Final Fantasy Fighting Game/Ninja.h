@@ -10,11 +10,10 @@
 #include "Character.h"
 
 class Ninja : public Character {
-private:
-    
+
 public:
-    Ninja() { setName(""); setMaxHealth(100); setHealth(100); setDamage(10); setDefense(0); setBalance(0); };
-    Ninja(std::string n, int h) { setName(n); setMaxHealth(h); setHealth(h); setDamage(100); setDefense(0); setBalance(0); };
+    Ninja() { setName(""); setMaxHealth(350); setHealth(350); setDamage(80); setDefense(0); setBalance(0); };
+    Ninja(std::string n, int h) { setName(n); setMaxHealth(h); setHealth(h); setDamage(80); setDefense(0); setBalance(0); };
    
     
     void getCharacterInfo() { std::cout << " " << std::setw(13) << std::left << getName() << "\t(" << getHealth() << " / " << getMaxHealth() << ") Health\n"; };

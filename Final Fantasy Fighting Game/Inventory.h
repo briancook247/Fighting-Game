@@ -9,6 +9,9 @@
 #include "Asset.h"
 #include "Sword.h"
 #include "Bow.h"
+#include "HealthPotion.h"
+#include "LightArmor.h"
+#include "HeavyArmor.h"
 
 class Inventory {
 private:
@@ -26,7 +29,14 @@ public:
     }
     void addItem(Asset* item) {
         inventory.push_back(item);
+    }
+    
+    void deleteItem(int id) {
+        delete inventory[id];
+    }
 
+    Asset* getInvItem(int id) {
+        return inventory[id];
     }
 
     Asset* equipItem(int id) {

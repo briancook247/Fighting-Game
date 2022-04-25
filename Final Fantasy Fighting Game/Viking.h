@@ -10,11 +10,10 @@
 #include "Character.h"
 
 class Viking : public Character {
-private:
 
 public:
-    Viking() { setName(""); setMaxHealth(100); setHealth(100); setDamage(10); setDefense(0); };
-    Viking(std::string n, int h) { setName(n); setMaxHealth(h); setHealth(h); setDamage(10); setDefense(0); };
+    Viking() { setName(""); setMaxHealth(350); setHealth(350); setDamage(80); setDefense(0); setBalance(0); };
+    Viking(std::string n, int h) { setName(n); setMaxHealth(h); setHealth(h); setDamage(78); setDefense(0); };
 
     void getCharacterInfo() { std::cout << " " << std::setw(13) << std::left << getName() << "\t(" << getHealth() << " / " << getMaxHealth() << ") Health\n"; };
     

@@ -2,9 +2,9 @@
 
 Colloseum::Colloseum() {
 
-	enemyList.push_back(new Ninja("Madara", 150));
-	enemyList.push_back(new Viking("Askelad", 130));
-	enemyList.push_back(new Ninja("Tobi", 130));
+	enemyList.push_back(new Ninja("Madara", 360));
+	enemyList.push_back(new Viking("Askelad", 300));
+	enemyList.push_back(new Ninja("Tobi", 290));
 
 }
 
@@ -20,7 +20,6 @@ Colloseum::~Colloseum() {
 
 void Colloseum::start()
 {
-
 	std::cout << "\nWelcome to The...\n"; Sleep(800);
 	printIntro(); Sleep(700);
 
@@ -35,11 +34,8 @@ void Colloseum::start()
 			goToShop();
 		}
 		else if (input == "e" || input == "E") {
-
-			
 			battle();
 		}
-
 	}
 }
 
@@ -114,41 +110,81 @@ void Colloseum::battle() {
 					std::cout << "\n\n\n\t\t\tThat enemy has been defeated, pick a new enemy to attack";
 				}
 			}
-			else if (input == "2" && enemyList[1]->getHealth() > 0) {
-				if (randNum != 3) {
-					std::cout << "\n\n\n";
-					attack(characterList[0], enemyList[1]);
+			else if (input == "2") {
+				if (enemyList[1]->getHealth() > 0) {
+					if (randNum != 3) {
+						std::cout << "\n\n\n";
+						attack(characterList[0], enemyList[1]);
+					}
+					else {
+						std::cout << "\n\n\n\t\t\tThe attack has been deflected, ";
+						attack(enemyList[1], characterList[0]);
+					}
 				}
 				else {
-					std::cout << "\n\n\n\t\t\tThe attack has been deflected, ";
-					attack(enemyList[1], characterList[0]);
+					std::cout << "\n\n\n\t\t\tThat enemy has been defeated, pick a new enemy to attack";
 				}
+				
 			}
-			else if (input == "3" && enemyList[2]->getHealth() > 0) {
-				if (randNum != 3) {
-					std::cout << "\n\n\n";
-					attack(characterList[0], enemyList[2]);
+			else if (input == "3") {
+				if (enemyList[2]->getHealth() > 0) {
+					if (randNum != 3) {
+						std::cout << "\n\n\n";
+						attack(characterList[0], enemyList[2]);
+					}
+					else {
+						std::cout << "\n\n\n\t\t\tThe attack has been deflected, ";
+						attack(enemyList[2], characterList[0]);
+					}
 				}
 				else {
-					std::cout << "\n\n\n\t\t\tThe attack has been deflected, ";
-					attack(enemyList[2], characterList[0]);
+					std::cout << "\n\n\n\t\t\tThat enemy has been defeated, pick a new enemy to attack";
 				}
 			}
 			else {
 				std::cout << "\nThat enemy is either dead or does not exist, try again...\n\n";
 			}
 		}
+
 		else if (input == "2") {
 			std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
 			characterList[0]->showInv();
 
-			std::wcout << "\nType an Item to equip/swap: #";
+		
+			std::cout << "\nType an Item to equip/swap: #";
 			std::cin >> input;
-			int wpnId = stoi(input);
+			int itemId = stoi(input);
+			
+			swordPtr = dynamic_cast<Sword*>(characterList[0]->getInvSlot(itemId));
+			bowPtr = dynamic_cast<Bow*>(characterList[0]->getInvSlot(itemId));
+			lArmorPtr = dynamic_cast<LightArmor*>(characterList[0]->getInvSlot(itemId));
+			hArmorPtr = dynamic_cast<HeavyArmor*>(characterList[0]->getInvSlot(itemId));
+			healthPtr = dynamic_cast<HealthPotion*>(characterList[0]->getInvSlot(itemId));\
 
-			characterList[0]->setCurrentWeapon(wpnId);
-			std::cout << "\nCurrent Weapon Is:\n";
-			characterList[0]->getCurrentWeapon()->getItemInfo();
+			if (swordPtr != nullptr || bowPtr != nullptr)
+			{
+				characterList[0]->setCurrentWeapon(itemId);
+				if (swordPtr != nullptr) {
+					characterList[0]->setDamage(characterList[0]->getDamage() + swordPtr->getDamage());
+				}
+				else if (bowPtr != nullptr) {
+					characterList[0]->setDamage(characterList[0]->getDamage() + bowPtr->getDamage());
+				}
+				std::cout << "\nCurrent Weapon Is:\n";
+				characterList[0]->getCurrentWeapon()->getItemInfo();
+			}
+			else if (lArmorPtr != nullptr || hArmorPtr != nullptr) {
+				characterList[0]->setCurrentArmor(itemId);
+				if (lArmorPtr != nullptr) {
+					characterList[0]->setMaxHealth(characterList[0]->getHealth() + lArmorPtr->getDefense());
+				}
+				else if (hArmorPtr != nullptr) {
+					characterList[0]->setMaxHealth(characterList[0]->getHealth() + hArmorPtr->getDefense());
+				}
+			}
+			else if (healthPtr != nullptr) {
+				characterList[0]->setHealth(characterList[0]->getHealth() + healthPtr->getHealth());
+			}
 
 		}
 		else if (input == "3") {
@@ -166,6 +202,7 @@ void Colloseum::battle() {
 		}
 		std::cout << "\n\n\n" << "Enemies Defeated : " << enemiesDefeated << "\n\n\n";
 	}
+	//Save Character? q/e
 }
 
 void Colloseum::attack(Character* attacker, Character* receiver) {
@@ -176,8 +213,6 @@ void Colloseum::attack(Character* attacker, Character* receiver) {
 	std::cout << "\n\t\t\t" << attacker->getName() << " does "  << attacker->getDamage() << " damage to " << receiver->getName() <<
 		"!\tNew Health : (" << receiver->getHealth() << " / " << receiver->getMaxHealth() << ")";
 	}
-	// fix later, we get money if our character dies rn, make another case for when our character dies to lose battle
-	//else if (attacker != characterList[0]) {
 	else {
 		std::cout << "\t" << receiver->getName() << " was killed.\n";
 		srand(time(NULL));
@@ -186,13 +221,12 @@ void Colloseum::attack(Character* attacker, Character* receiver) {
 		std::cout << "\t\t* You earned " << 20 + randCoins << " coins from killing " << receiver->getName() << " * " << "\n\n";
 	}
 }
-
-
+// Walks through shopping loop
 void Colloseum::goToShop()
 {
 	bool stopShop = false;
 	std::string input;
-	characterList[0]->setBalance(1000);
+	characterList[0]->setBalance(200);
 
 	while (stopShop != true) {
 		std::cout << "\n";
@@ -210,6 +244,7 @@ void Colloseum::goToShop()
 			int id = stoi(input);
 			if (id > 0 && id <= shop.getSize()) {
 				characterList[0]->addToInv(shop.buyItem(id));
+				characterList[0]->setBalance(characterList[0]->getBalance() - shop.buyItem(id)->getPrice());
 				std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 				std::cout << "\n----------------------------I N V E N T O R Y----------------------------\n";
 				characterList[0]->showInv();
@@ -218,42 +253,9 @@ void Colloseum::goToShop()
 				std::cout << "That Item was not found in the shop, please try again...\n";
 			}
 		}
-		
 	}
-
-
 }
 
-/*
-
-void Colloseum::goToShop()
-{
-
-	std::cout << "\n";
-	shop.showAllItems();
-	characterList[0]->setBalance(1000);
-	std::cout << "\nYour Balance: " << characterList[0]->getBalance() << "$\n";
-
-	bool stopShop = false;
-	std::string input;
-
-	while (stopShop != true) {
-		std::cout << "\nType the id# of an item to purchase... Or [Q] to quit shopping... # ";
-		std::cin >> input;
-		if (input == "q" || input == "Q") {
-			stopShop = true;
-		}
-		else {
-			int id = stoi(input);
-			characterList[0]->addToInv(shop.buyItem(id - 1));
-				std::cout << "\nYour new Inventory...\n";
-				characterList[0]->showInv();
-		}
-	}
-
-
-}
-*/
 
 void Colloseum::characterSelect() {
 	std::string input;
@@ -263,7 +265,7 @@ void Colloseum::characterSelect() {
 			std::cout << "What was the name of your character?" << "\n";
 			std::cin >> input;
 			// use getline instead
-		   // loadCharacter();
+		    loadCharacter();
 			break;
 		}
 		else if (input == "e" || input == "E") {
@@ -273,22 +275,22 @@ void Colloseum::characterSelect() {
 	}
 }
 
-//void Colloseum::loadCharacter(std::istream& in, std::vector<Character*> cList)
-//{
-//    if (!in) {
-//        std::cout << "File not found";
-//        exit(10);
-//    }
-//    std::string str;
-//    Character* newCharacter;
-//
-//    while (in >> newCharacter) {
-//        cList.push_back(newCharacter);
-//        //cout << newContact;
-//    }
-//}
+void Colloseum::loadCharacter(std::istream& in, std::vector<Character*> cList)
+{
+    if (!in) {
+        std::cout << "File not found";
+        exit(10);
+    }
+    std::string str;
+    Character* newCharacter;
 
-// set default health and damage back
+    while (in >> newCharacter) {
+        cList.push_back(newCharacter);
+        //cout << newContact;
+    }
+}
+
+
 void Colloseum::newCharacter()
 {
 	std::cout << "Choose a class: Ninja or Viking... \n";
@@ -298,14 +300,14 @@ void Colloseum::newCharacter()
 
 			std::cout << "Choose a name for your ninja: ";
 			std::cin >> input;
-			characterList.push_back(new Ninja(input, 10000));
+			characterList.push_back(new Ninja(input, 1000));
 			break;
 		}
 		else if (input == "viking" || input == "Viking") {
 
 			std::cout << "Choose a name for your viking: ";
 			std::cin >> input;
-			characterList.push_back(new Viking(input, 100));
+			characterList.push_back(new Viking(input, 1000));
 			break;
 		}
 	}

@@ -16,15 +16,23 @@
 #include <Windows.h>
 #include <fstream>
 #include <conio.h>
+#include "Asset.h"
+#include "Sword.h"
+#include "HealthPotion.h"
+
 
 
 class Colloseum {
 private:
     std::vector<Character*> characterList;
-    Character* player;
+    //Character* player;
     std::vector<Character*> enemyList;
     Shop shop;
-
+    Sword* swordPtr;
+    Bow* bowPtr;
+    LightArmor* lArmorPtr;
+    HeavyArmor* hArmorPtr;
+    HealthPotion* healthPtr;
     
 public:
     Colloseum();
@@ -32,11 +40,9 @@ public:
     void displayAllEnemies();
     ~Colloseum();
     void attack(Character*, Character*);
-
     void start();
     void battle();
     void goToShop();
-
     void characterSelect();
     void loadCharacter(std::istream& in, std::vector <Character*> cList);
     void newCharacter();

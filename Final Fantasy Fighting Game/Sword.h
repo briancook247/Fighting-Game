@@ -20,11 +20,8 @@ public:
     std::string getName() const { return name; }
     void setDamage(int damage) { this->damage = damage; }
     int getDamage() const { return damage; }
-    void getItemInfo() { std::cout << "\t" << std::setw(20) << std::left << getName() << "\t\tDamage: " << getDamage() << "\t\tPrice: " << getPrice() << "$\n"; };
-    void equip(int i) {
-
-    };
-
+    void getItemInfo() { std::cout << "\t" << std::setw(20) << std::left << getName() 
+        << "\t\tDamage: " << getDamage() << "\t\tPrice: " << getPrice() << "$\n"; };
 };
 
 #endif
