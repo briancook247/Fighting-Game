@@ -11,7 +11,10 @@
 #include <iostream>
 #include "Sword.h"
 #include "Bow.h"
-#include "Armor.h"
+#include "LightArmor.h"
+#include "HeavyArmor.h"
+#include "HealthPotion.h"
+
 
 class Shop {
 private:
@@ -20,7 +23,8 @@ private:
 public:
     Shop();
     void showAllItems();
-    Asset* buyItem();
+    Asset* buyItem(int);
+    int getSize();
     ~Shop();
 };
 

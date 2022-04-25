@@ -20,14 +20,19 @@ public:
     }
     void showInventory() {
         for (int i = 0; i < inventory.size(); i++) {
-            inventory[i]->getItemInfo();
+            std::cout << ++i;
+            inventory[--i]->getItemInfo();
         }
     }
     void addItem(Asset* item) {
         inventory.push_back(item);
+
     }
 
-    //void equipItem();
+    Asset* equipItem(int id) {
+        return inventory[id];
+    };
+
     ~Inventory() {
         for (int i = 0; i < inventory.size(); i++) {
             delete inventory[i];

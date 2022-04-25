@@ -10,6 +10,7 @@
 #include <iostream>
 #include <iomanip>
 
+
 class Asset {
 private:
     int id;
@@ -19,8 +20,10 @@ public:
     int getId() const { return id; }
     void setPrice(int price) { this->price = price; }
     int getPrice() const { return price; }
+    
+    //virtual std::string getName() = 0;
     virtual void getItemInfo() = 0;
-
+    //virtual void equip(Asset* item) = 0;
 };
 
 #endif

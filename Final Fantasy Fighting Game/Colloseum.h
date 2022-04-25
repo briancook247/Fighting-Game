@@ -14,11 +14,14 @@
 #include "Ninja.h"
 #include "Shop.h"
 #include <Windows.h>
+#include <fstream>
+#include <conio.h>
 
 
 class Colloseum {
 private:
     std::vector<Character*> characterList;
+    Character* player;
     std::vector<Character*> enemyList;
     Shop shop;
 
@@ -35,7 +38,7 @@ public:
     void goToShop();
 
     void characterSelect();
-    void loadCharacter(std::string);
+    void loadCharacter(std::istream& in, std::vector <Character*> cList);
     void newCharacter();
 
     void printIntro();

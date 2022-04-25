@@ -11,6 +11,7 @@
 #include <iostream>
 #include<vector>
 #include "Inventory.h"
+#include <string>
 
 
 class Character {
@@ -22,6 +23,7 @@ private:
     int damage;
     int defense;
     Inventory inventory;
+    Asset* curWeapon;
     int balance;
 public:
     void setName(std::string n) { this->name = n; }
@@ -39,22 +41,40 @@ public:
 
     void addToInv(Asset* item) {
         inventory.addItem(item);
+        
     }
+
+    Asset* getCurrentWeapon() {
+        return curWeapon;
+    }
+
+    void setCurrentWeapon(int id) {
+        curWeapon = inventory.equipItem(--id);
+    }
+
     void showInv() {
-        std::cout << "\n\nInventory:\n";
+        std::cout << "\n----------------------------I N V E N T O R Y----------------------------\n\n";
         inventory.showInventory();
-        std::cout << "\n\n";
+        std::cout << "\n-------------------------------------------------------------------------\n";
     }
 
     virtual void getCharacterInfo() = 0;
    // virtual void inventory() = 0;
     virtual std::string getClass() = 0;
-    //virtual void equipWeapon() = 0;
+   // virtual void equip(int) = 0;
 
-    friend std::ostream& operator<<(std::ostream& out, const Character& c) {
-        out << c.name << "\tHealth: (" << c.health << " / " << c.maxHealth << ")\n\n";
+   /* friend std::ostream& operator<<(std::ostream& out, const Character* c) {
+        out << c->getName() << "\tHealth: (" << c->getHealth() << " / " << c->getMaxHealth() << ")\n\n";
         return out;
-    };
+    }
+
+    friend std::istream& operator>>(std::istream& in, Character* c) {
+        in >> c->name;
+        in >> c->damage;
+        getline(in, c.phone);
+        c.setId(Contact::totalCt);
+        return in;
+    }*/
 };
 
 //Character::~Character() {

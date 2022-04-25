@@ -30,6 +30,9 @@
     <ClCompile Include="Bow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -41,7 +44,7 @@
     <ClInclude Include="Bow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Armor.h">
+    <ClInclude Include="LightArmor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Ninja.h">
@@ -60,6 +63,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HeavyArmor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthPotion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

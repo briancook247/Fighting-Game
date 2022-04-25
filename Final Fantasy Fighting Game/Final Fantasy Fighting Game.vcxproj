@@ -140,16 +140,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bow.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Colloseum.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Sword.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Armor.h" />
+    <ClInclude Include="HealthPotion.h" />
+    <ClInclude Include="LightArmor.h" />
     <ClInclude Include="Asset.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Colloseum.h" />
+    <ClInclude Include="HeavyArmor.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Ninja.h" />
     <ClInclude Include="Shop.h" />
